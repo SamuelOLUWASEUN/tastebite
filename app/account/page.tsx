@@ -1,8 +1,9 @@
+
+export const dynamic = 'force-dynamic';
 "use client";
 import { Suspense } from "react";
 import { useState, useEffect } from "react";
 import { createClient } from "@/supabase/client";
-import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, Mail, Lock, User, Phone, MapPin, LogOut } from "lucide-react";
 
@@ -11,7 +12,6 @@ type Tab = "login" | "signup";
 function AccountContent() {
   const supabase = createClient();
   const router = useRouter();
-  const params = useSearchParams();
   const nextPath = params.get("next") ?? "/";
 
   const [user, setUser] = useState<any>(null);
@@ -194,3 +194,4 @@ export default function AccountPage() {
     </Suspense>
   );
 }
+
