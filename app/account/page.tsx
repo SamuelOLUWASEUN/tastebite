@@ -1,11 +1,14 @@
 "use client";
-export const dynamic = "force-dynamic";
-import { Suspense } from "react";
-import { useState, useEffect } from "react";
+
+export const dynamic = 'force-dynamic';
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Mail, Lock, User, Phone, MapPin, LogOut } from "lucide-react";
+
+// ... rest of your component code
+
 
 type Tab = "login" | "signup";
 
