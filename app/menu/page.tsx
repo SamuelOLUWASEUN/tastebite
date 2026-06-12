@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { createClient } from "@/supabase/server";
 import { MenuItemCard } from "@/components/menu/MenuItemCard";
 import { MenuFilters } from "./MenuFilters";
@@ -65,3 +66,4 @@ export default async function MenuPage({
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { createClient } from "@/supabase/server";
 import { formatPrice, formatDate, ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from "@/lib/utils";
 import { AdminOrderActions } from "./AdminOrderActions";
@@ -47,3 +48,4 @@ export default async function AdminOrdersPage() {
     </div>
   );
 }
+

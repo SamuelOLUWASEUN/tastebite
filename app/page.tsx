@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Star, Clock, Truck } from "lucide-react";
@@ -172,3 +173,4 @@ function getCategoryEmoji(slug: string): string {
   };
   return map[slug] ?? "🍴";
 }
+

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { createClient } from "@/supabase/server";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingBag, Users, DollarSign, TrendingUp } from "lucide-react";
@@ -87,3 +88,4 @@ export default async function AdminPage() {
     </div>
   );
 }
+
