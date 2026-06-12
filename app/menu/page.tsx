@@ -9,7 +9,7 @@ export default async function MenuPage({
 }: {
   searchParams: { category?: string; q?: string };
 }) {
-  const supabase  = createClient();
+  const supabase  = await createClient();
   const category  = searchParams.category ?? "all";
   const query     = searchParams.q ?? "";
 

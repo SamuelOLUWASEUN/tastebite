@@ -5,7 +5,7 @@ import { createClient } from "@/supabase/server";
 import { MenuItemCard } from "@/components/menu/MenuItemCard";
 
 export default async function HomePage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: featured } = await supabase
     .from("menu_items")
