@@ -9,7 +9,7 @@ export default async function AdminOrdersPage() {
   const supabase = createAdminClient();
   const { data: orders, error } = await supabase
     .from("orders")
-    .select("*, order_items(*, menu_item:menu_items(name))")
+    .select("*, order_items(*, menu_item:menu_items(name)), profile:profiles(full_name, email)")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -62,4 +62,5 @@ export default async function AdminOrdersPage() {
     </div>
   );
 }
+
 
