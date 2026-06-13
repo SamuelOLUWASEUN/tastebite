@@ -44,7 +44,7 @@ export function CartDrawer() {
                 <p className="font-display text-lg text-white/50">Your cart is empty</p>
                 <p className="text-sm text-surface-200/30 font-body mt-1">Add some delicious items to get started</p>
               </div>
-              <button onClick={closeCart} className="btn-brand mt-2">Browse Menu</button>
+              <Link href="/menu" onClick={closeCart} className="btn-brand mt-2">Browse Menu</Link>
             </div>
           ) : (
             items.map((item) => (
@@ -102,3 +102,4 @@ export function CartDrawer() {
     </>
   );
 }
+
