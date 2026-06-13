@@ -77,14 +77,14 @@ export function Navbar() {
             )}>{l.label}</Link>
           ))}
           {isAdmin && (
-            <Link href="/admin" className={cn(
+            <a href="/admin" className={cn(
               "px-4 py-2 rounded-full text-sm font-body font-medium transition-all duration-200 flex items-center gap-1.5",
               pathname.startsWith("/admin")
                 ? "bg-brand-500/20 text-brand-400"
                 : "text-brand-400/60 hover:text-brand-400 hover:bg-brand-500/10"
             )}>
               <ChefHat size={14} /> Admin
-            </Link>
+            </a>
           )}
         </nav>
 
@@ -136,13 +136,14 @@ export function Navbar() {
             <User size={15} /> {user ? "My Account" : "Sign In"}
           </Link>
           {isAdmin && (
-            <Link href="/admin" onClick={() => setOpen(false)}
+            <a href="/admin" onClick={() => setOpen(false)}
               className="px-4 py-3 rounded-xl text-sm font-body font-medium text-brand-400/60 hover:text-brand-400 hover:bg-brand-500/10 flex items-center gap-2">
               <ChefHat size={14} /> Admin Panel
-            </Link>
+            </a>
           )}
         </div>
       )}
     </header>
   );
 }
+
