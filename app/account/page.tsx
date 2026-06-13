@@ -44,8 +44,9 @@ function AccountContent() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) { toast.error(error.message); setLoading(false); return; }
     toast.success("Welcome back!");
-    router.push(nextPath);
+    await new Promise(r => setTimeout(r, 300));
     router.refresh();
+    router.push(nextPath);
   }
 
   async function handleSignup() {
@@ -186,3 +187,4 @@ export default function AccountPage() {
     </Suspense>
   );
 }
+
