@@ -9,25 +9,16 @@ export default async function AdminOrdersPage() {
   const supabase = createAdminClient();
   const { data: orders, error } = await supabase
     .from("orders")
-    .select("*, order_items(*, menu_item:menu_items(name)), profile:profiles(full_name, email)")
+    .select("*, order_items(*, menu_item:menu_items(name)), profile:profiles!orders_user_id_fkey(full_name, email)")
     .order("created_at", { ascending: false });
-
-  if (error) {
-    return (
-      <div>
-        <h1 className="font-display text-3xl font-bold text-white mb-8">Orders</h1>
-        <p className="text-red-400">Error: {error.message}</p>
-        <p className="text-red-400">Details: {JSON.stringify(error)}</p>
-      </div>
-    );
-  }
 
   return (
     <div>
       <h1 className="font-display text-3xl font-bold text-white mb-8">Orders</h1>
+      {error && <p className="text-red-400 mb-4">Error: {error.message}</p>}
       <div className="space-y-4">
         {!orders || orders.length === 0 ? (
-          <p className="text-surface-200/40">No orders found.</p>
+          <p className="text-surface-200/40 text-center py-20">No orders yet.</p>
         ) : (
           orders.map((order: any) => (
             <div key={order.id} className="card p-5">
@@ -38,6 +29,9 @@ export default async function AdminOrdersPage() {
                     {order.profile?.full_name ?? order.profile?.email ?? "Guest"}
                   </p>
                   <p className="font-body text-xs text-surface-200/40 mt-0.5">{formatDate(order.created_at)}</p>
+                  {order.delivery_address && (
+                    <p className="text-xs font-body text-surface-200/30 mt-1">📍 {order.delivery_address}</p>
+                  )}
                 </div>
                 <div className="flex items-center gap-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-mono border ${ORDER_STATUS_COLORS[order.status]}`}>
@@ -51,9 +45,6 @@ export default async function AdminOrdersPage() {
                   <span key={i.id}>{i.menu_item?.name ?? "?"} x{i.quantity}{idx < order.order_items.length - 1 ? ", " : ""}</span>
                 ))}
               </div>
-              {order.delivery_address && (
-                <p className="text-xs font-body text-surface-200/30 mb-4">📍 {order.delivery_address}</p>
-              )}
               <AdminOrderActions orderId={order.id} currentStatus={order.status} />
             </div>
           ))
@@ -62,5 +53,3 @@ export default async function AdminOrdersPage() {
     </div>
   );
 }
-
-
