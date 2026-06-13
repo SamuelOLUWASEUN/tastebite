@@ -1,5 +1,5 @@
 export const dynamic = 'force-dynamic'
-import { createClient } from "@/supabase/server";
+import { createAdminClient } from "@/supabase/server";
 import { formatPrice } from "@/lib/utils";
 import { AdminMenuActions } from "./AdminMenuActions";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import Image from "next/image";
 export const metadata = { title: "Manage Menu" };
 
 export default async function AdminMenuPage() {
-  const supabase = createClient();
+  const supabase = createAdminClient();
   const { data: items } = await supabase
     .from("menu_items")
     .select("*, category:categories(name)")
@@ -56,4 +56,5 @@ export default async function AdminMenuPage() {
     </div>
   );
 }
+
 

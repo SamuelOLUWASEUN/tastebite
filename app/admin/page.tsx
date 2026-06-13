@@ -1,12 +1,12 @@
 export const dynamic = 'force-dynamic'
-import { createClient } from "@/supabase/server";
+import { createAdminClient } from "@/supabase/server";
 import { formatPrice } from "@/lib/utils";
 import { ShoppingBag, Users, DollarSign, TrendingUp } from "lucide-react";
 
 export const metadata = { title: "Admin Dashboard" };
 
 export default async function AdminPage() {
-  const supabase = createClient();
+  const supabase = createAdminClient();
 
   const [
     { count: totalOrders },
@@ -88,4 +88,5 @@ export default async function AdminPage() {
     </div>
   );
 }
+
 

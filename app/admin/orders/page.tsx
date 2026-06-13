@@ -1,12 +1,12 @@
 export const dynamic = 'force-dynamic'
-import { createClient } from "@/supabase/server";
+import { createAdminClient } from "@/supabase/server";
 import { formatPrice, formatDate, ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from "@/lib/utils";
 import { AdminOrderActions } from "./AdminOrderActions";
 
 export const metadata = { title: "Manage Orders" };
 
 export default async function AdminOrdersPage() {
-  const supabase = createClient();
+  const supabase = createAdminClient();
   const { data: orders } = await supabase
     .from("orders")
     .select("*, order_items(*, menu_item:menu_items(name)), profile:profiles(full_name, email)")
@@ -48,4 +48,5 @@ export default async function AdminOrdersPage() {
     </div>
   );
 }
+
 
