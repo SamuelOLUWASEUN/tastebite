@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { createClient } from "@/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -12,19 +13,19 @@ const adminLinks = [
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
+
   if (!user) redirect("/account");
 
-  const { data: profile } = await supabase
+  const { data: profile, error } = await supabase
     .from("profiles")
     .select("is_admin")
     .eq("id", user.id)
     .single();
 
-  if (!profile?.is_admin) redirect("/");
+  if (error || !profile?.is_admin) redirect("/account");
 
   return (
     <div className="pt-16 min-h-screen flex">
-      {/* Sidebar */}
       <aside className="w-56 flex-shrink-0 bg-surface-800 border-r border-white/5 flex flex-col p-4 sticky top-16 h-[calc(100vh-4rem)]">
         <div className="flex items-center gap-2 px-3 py-3 mb-4">
           <ChefHat size={18} className="text-brand-400" />
